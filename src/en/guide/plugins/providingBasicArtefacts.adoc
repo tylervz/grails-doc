@@ -15,12 +15,7 @@ A plugin can add new commands to the Grails 3.0 interactive shell in one of two 
 
 Code generation scripts can be used to create artefacts within the project tree and automate interactions with Gradle.
 
-If you want to create a new shell command that interacts with a loaded Grails application instance then you should use the `create-command` command:
-
-[source,groovy]
-----
-$ grails create-command MyExampleCommand
-----
+// TODO: finish updating this page
 
 This will create a file called `grails-app/commands/PACKAGE_PATH/MyExampleCommand.groovy` that extends {apiDocs}grails/dev/commands/ApplicationCommand.html[ApplicationCommand]:
 

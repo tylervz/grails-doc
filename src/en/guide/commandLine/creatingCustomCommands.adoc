@@ -1,10 +1,7 @@
 
-You can create your own commands by running the <<ref-command-line-create-command,create-command>> command from the root of your project. For example the following command will create a command called `grails-app/commands/HelloWorldCommand`:
+You can create your own commands in Grails projects. For example, you could create a command called `grails-app/commands/HelloWorldCommand.groovy`:
 
-[source,groovy]
-----
-grails create-command HelloWorld
-----
+// TODO: finish updating this page
 
 NOTE: Unlike scripts, commands cause the Grails environment to start and you have full access to the application context and the runtime.
 

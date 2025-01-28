@@ -4,11 +4,6 @@
 [[ref-command-line]]
 === Command Line
 
-[[ref-command-line-bug-report]]
-==== bug-report
-
-include::ref/Command Line/bug-report.adoc[]
-
 [[ref-command-line-clean]]
 ==== clean
 
@@ -29,12 +24,9 @@ include::ref/Command Line/console.adoc[]
 
 include::ref/Command Line/create-app.adoc[]
 
-[[ref-command-line-create-command]]
-==== create-command
 [[ref-command-line-assemble]]
 ==== assemble
 
-include::ref/Command Line/create-command.adoc[]
 include::ref/Command Line/assemble.adoc[]
 
 [[ref-command-line-create-controller]]
@@ -94,11 +86,6 @@ include::ref/Command Line/create-service.adoc[]
 ==== create-taglib
 
 include::ref/Command Line/create-taglib.adoc[]
-
-[[ref-command-line-create-unit-test]]
-==== create-unit-test
-
-include::ref/Command Line/create-unit-test.adoc[]
 
 [[ref-command-line-dependency-report]]
 ==== dependency-report
