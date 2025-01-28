@@ -1,7 +1,10 @@
 
 == test-app
 
-
+// TODO: update this page, rename it to check.adoc?
+// test-app,check
+// test-app --unit,test
+// test-app --integration,integrationTest
 
 === Purpose
 

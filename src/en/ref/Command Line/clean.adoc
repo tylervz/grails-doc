@@ -13,7 +13,7 @@ The `clean` command deletes all compiled resources from the application. Since G
 
 [source,groovy]
 ----
-grails clean
+./gradlew clean
 ----
 
 
@@ -23,5 +23,5 @@ grails clean
 Usage:
 [source,groovy]
 ----
-grails clean
+./gradlew clean
 ----

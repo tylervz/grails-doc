@@ -44,7 +44,6 @@ $ grails create-app books
 | Available Commands (type grails help 'command-name' for more info):
 | Command Name                          Command Description
 ----------------------------------------------------------------------------------------------------
-clean                                   Cleans a Grails application's compiled sources
 compile                                 Compiles a Grails application
 ...
 ----

@@ -1,1 +1,150 @@
 Automated testing is a critical aspect of Grails development. Grails provides a rich set of testing capabilities, ranging from low-level unit testing to high-level functional tests. This comprehensive guide explores these diverse testing features in detail.
+
+// TODO: might need to move these into different files. Need to look at how the files are on the 7.0.x branch:
+// https://github.com/grails/grails-doc/blob/7.0.x/src/en/guide/testing.adoc
+// https://docs.grails.org/7.0.x/guide/testing.html
+
+The first thing to be aware of is that all of the `create-\*` and `generate-\*` commands create `unit` or `integration` tests automatically. For example if you run the link:../ref/Command%20Line/create-controller.html[create-controller] command as follows:
+
+[source,groovy]
+----
+grails create-controller com.acme.app.simple
+----
+
+Grails will create a controller at `grails-app/controllers/com/acme/app/SimpleController.groovy`, and also a unit test at `src/test/groovy/com/acme/app/SimpleControllerSpec.groovy`. What Grails won't do however is populate the logic inside the test! That is left up to you.
+
+NOTE: The default class name suffix is `Tests` but as of Grails 1.2.2, the suffix of `Test` is also supported.
+
+
+==== Running Tests
+
+
+// TODO: rename test-app.adoc to check.adoc ? And add a test.adoc file and a integrationTest.adoc file?
+Tests are run with the link:../ref/Command%20Line/check.html[check] command:
+
+[source,groovy]
+----
+./gradlew check
+----
+
+The command will run all tests (unit, integration, and funtional) in your project and produce output such as:
+
+[source,groovy]
+----
+-------------------------------------------------------
+Running Unit Tests...
+Running test FooTests...FAILURE
+Unit Tests Completed in 464ms ...
+-------------------------------------------------------
+
+Tests failed: 0 errors, 1 failures
+----
+
+whilst showing the reason for each test failure.
+
+NOTE: You can force a clean before running tests by running `./gradlew clean check`.
+
+To run only unit tests, use the `test` command:
+
+[source,groovy]
+----
+./gradlew test
+----
+
+To run only integration tests, use the `integrationTest` command:
+
+[source,groovy]
+----
+./gradlew integrationTest
+----
+
+Grails writes HTML test reports to the `build/reports/tests` directory and JUnit XML test reports to the `build/test-results` directory. The HTML reports are generally the best ones to look at.
+
+Using Grails' link:commandLine.html#interactiveMode[interactive mode] confers some distinct advantages when executing tests. First, the tests will execute significantly faster on the second and subsequent runs. Second, a shortcut is available to open the HTML reports in your browser:
+
+[source,groovy]
+----
+open test-report
+----
+
+You can also run your unit tests from within most IDEs.
+
+
+==== Targeting Tests
+
+
+You can selectively target the test(s) to be run in different ways. To run all unit tests for a controller named `SimpleController` you would run:
+
+[source,groovy]
+----
+./gradlew test --tests SimpleControllerSpec
+----
+
+This will run any unit tests defined in the file named `SimpleControllerSpec.groovy`. Wildcards can be used...
+
+[source,groovy]
+----
+./gradlew test --tests *ControllerSpec
+----
+
+This will test all unit tests for classes ending in `ControllerSpec`. Package names can optionally be specified...
+
+[source,groovy]
+----
+./gradlew test --tests some.org.*ControllerSpec
+----
+
+or to run all unit tests in a package...
+
+[source,groovy]
+----
+./gradlew test --tests some.org.*
+----
+
+or to run all unit tests in a package including subpackages...
+
+[source,groovy]
+----
+./gradlew test --tests some.org.**.*
+----
+
+You can also target particular test methods...
+
+[source,groovy]
+----
+./gradlew test --tests SimpleControllerSpec.testLogin
+----
+
+This will run the `testLogin` test in the `SimpleController` tests. You can specify as many patterns in combination as you like...
+
+[source,groovy]
+----
+./gradlew test --tests some.org.* SimpleControllerSpec.testLogin --tests BookControllerSpec
+----
+
+All of these examples can be ran with the `integrationTest` Gradle command to run integration tests in the `src/integration-test/groovy` directory instead of unit tests:
+
+[source,groovy]
+----
+./gradlew integrationTest --tests SimpleControllerSpec
+----
+
+NOTE: In Grails 2.x, adding `-rerun` as an argument would only run those tests which failed in the previous test-app run. This argument is no longer supported.
+
+NOTE: In Grails 3.x, you might need to specify the package name before the class name, as well as append "Spec" to the end. For example, if you want to run the test for the ProductController, you should use `./gradlew test --tests *.ProductControllerSpec`. Note that the star can be used if you don't want to type the whole package hierarchy.
+
+
+==== Debugging
+
+// TODO: need to update this section
+
+In order to debug your tests via a remote debugger, you can add `--debug-jvm` after `grails` in any commands, like so:
+
+[source,groovy]
+----
+grails --debug-jvm test-app
+----
+
+This will open the default Java remote debugging port, 5005, for you to attach a remote debugger from your editor / IDE of choice.
+
+NOTE: This differs from Grails 2.3 and previous, where the `grails-debug` command existed.

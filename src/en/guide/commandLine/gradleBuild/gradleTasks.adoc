@@ -1,4 +1,4 @@
-As mentioned previously the `grails` command uses an embedded version of Gradle and certain Grails commands that existed in previous versions of Grails map onto their Gradle equivalents. The following table shows which Grails command invoke which Gradle task:
+As mentioned previously the `grails` command uses an embedded version of Gradle and certain Grails commands that existed in previous versions of Grails map onto their Gradle equivalents, while other Grails commands that existed in previous versions of Grails no longer exist and you must use the Gradle equivalent. The following table shows which Grails command invoke which Gradle task:
 
 [format="csv", options="header"]
 |===
